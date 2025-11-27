@@ -10,6 +10,7 @@ A blockchain-integrated 3D tower defense game where players mint NFT defense tur
 ## 🌟 Features
 
 ### 🎯 Gameplay
+
 - **3D Tower Defense** - Immersive Three.js-powered 3D graphics
 - **Auto-Firing Turrets** - Strategic mouse/WASD aiming with automatic firing
 - **Wave-Based Combat** - Survive increasingly difficult enemy waves
@@ -17,6 +18,7 @@ A blockchain-integrated 3D tower defense game where players mint NFT defense tur
 - **Progressive Difficulty** - Enemies get stronger with each wave
 
 ### ⛓️ Blockchain Integration
+
 - **NFT Defense Machines** - 3 unique turret types as NFTs
 - **On-Chain Progress** - Kills and achievements recorded on OneChain
 - **Token Rewards** - Earn SGT tokens for eliminating enemies
@@ -24,6 +26,7 @@ A blockchain-integrated 3D tower defense game where players mint NFT defense tur
 - **OneWallet Integration** - Seamless wallet connection and transactions
 
 ### 🎨 User Experience
+
 - **Smooth Flow** - Mint and play with automatic deployment
 - **Wallet Persistence** - Stay connected across sessions
 - **Manual Saves** - Full control over blockchain transactions
@@ -33,6 +36,7 @@ A blockchain-integrated 3D tower defense game where players mint NFT defense tur
 ## 🚀 Quick Start
 
 ### Prerequisites
+
 - Node.js v16+
 - OneWallet browser extension
 - OneChain testnet account with test tokens
@@ -73,17 +77,20 @@ npm run build
 ## 🏗️ Tech Stack
 
 ### Frontend
+
 - **React** - UI framework
 - **TypeScript** - Type-safe development
 - **Three.js** - 3D graphics and game rendering
 - **Vite** - Build tool and dev server
 
 ### Blockchain
+
 - **OneChain** - Layer 1 blockchain network
 - **OneLabs dApp Kit** - Wallet integration and blockchain interaction
 - **Move Language** - Smart contract development
 
 ### Smart Contracts
+
 - **Defense Machine NFTs** - ERC-721 compatible NFTs
 - **Player Profiles** - On-chain player data storage
 - **Kill Recording** - Batched transaction system
@@ -116,6 +123,7 @@ game1/
 ## 🎯 Game Mechanics
 
 ### Scoring System
+
 - **10 points** per enemy kill
 - **Bonus** for wave completion
 - **25 tokens** deployment bonus
@@ -123,11 +131,13 @@ game1/
 - **12+ tokens** per wave clear (scales with wave)
 
 ### Power-Ups
+
 - **🔥 Rapid Fire** - 50% faster firing rate (8s duration)
 - **🛡️ Shield** - Absorb 1 enemy hit (max 3 charges)
 - **💥 Explosive** - Double damage + AoE blast (10s duration)
 
 ### Staking
+
 - Stake unused NFT machines for passive OLP rewards
 - Unstake anytime to deploy for combat
 - Accumulate rewards while away
@@ -135,18 +145,22 @@ game1/
 ## 🔗 Blockchain Features
 
 ### NFT Minting
+
 Each defense machine is a unique NFT with:
+
 - Machine type (0-2)
 - Total kills tracked
 - Current level
 - Staking status
 
 ### Transaction Batching
+
 - Kills accumulated locally during gameplay
 - Manual "Save Progress" to batch submit
 - Reduces gas costs and wallet interruptions
 
 ### Wallet Persistence
+
 - AutoConnect enabled
 - Session maintained across page navigation
 - Menu/restart doesn't disconnect wallet
@@ -154,13 +168,16 @@ Each defense machine is a unique NFT with:
 ## 🎨 UI Components
 
 ### Progress Indicator
+
 4-step visual progress bar:
+
 1. 🔗 Connect Wallet
 2. ⚡ Mint NFT
 3. 🚀 Deploy Machine
 4. 🎮 Playing
 
 ### In-Game HUD
+
 - Wave counter
 - Score display
 - Token balance
@@ -171,50 +188,73 @@ Each defense machine is a unique NFT with:
 - Menu button
 
 ### Game Over Modal
+
 Three options when game ends:
+
 - **💾 Save Progress** - Submit kills to blockchain
 - **🔄 Play Again** - Instant restart (no reload)
 - **☰ Back to Menu** - Return to homepage
 
 ## 🔧 Configuration
 
-### Contract Addresses
-Edit `src/config/contracts.ts`:
-```typescript
-export const ONELABS_CONFIG = {
-  PACKAGE_ID: "your_package_id",
-  RPC_URL: "https://rpc.onechain.network",
-  NETWORK: "testnet"
-};
+### Environment Variables
+
+1. **Copy the example environment file**:
+
+```bash
+cp .env.example .env
 ```
 
-### Environment Variables
-Create `.env` file:
+2. **Configure your contract addresses** in `.env`:
+
 ```env
-VITE_ONECHAIN_RPC_URL=https://rpc.onechain.network
-VITE_PACKAGE_ID=your_package_id
+# OneLabs Blockchain Configuration
+VITE_ONELABS_NETWORK=testnet
+VITE_ONELABS_RPC_URL=https://rpc-testnet.onelabs.cc:443
+
+# Sentry Defense Smart Contract Addresses
+VITE_PACKAGE_ID=0x5aded26106e644f43168a91b290b90e813f887900602911d46645ec3f8c452d2
+VITE_REGISTRY_ID=0x504351131ffd194e3193e78ab3b9fd4e244ab4eba511470df1124b6f7337335a
+VITE_TREASURY_CAP_ID=0xd44db75208e4c606f788ae3903847db1b5b0a39a20532c8a2bbbe257f76d149d
+VITE_TOKEN_METADATA_ID=0xef63c8db5c72616e025a123f3a7cadc53612f10f8e32a04792eba7a775444dfe
+VITE_ADMIN_ADDRESS=0xecf82334426d46024ebad08e7828a8425d2166bbdc91bdbeff85181b7c0109ef
 ```
+
+### Contract Address Reference
+
+| Variable                 | Description                           | Current Testnet Value |
+| ------------------------ | ------------------------------------- | --------------------- |
+| `VITE_PACKAGE_ID`        | Main smart contract package ID        | `0x5aded...52d2`      |
+| `VITE_REGISTRY_ID`       | Game registry object ID               | `0x50435...335a`      |
+| `VITE_TREASURY_CAP_ID`   | Treasury capability for token minting | `0xd44db...149d`      |
+| `VITE_TOKEN_METADATA_ID` | Token metadata object                 | `0xef63c...4dfe`      |
+| `VITE_ADMIN_ADDRESS`     | Admin wallet address                  | `0xecf82...09ef`      |
+
+**Deployment Info**:
+
+- **Network**: OneLabs Testnet
+- **Transaction**: `HxC4uLvjvwjZRxu52jCJ8Rb8PYsZxnjxUGBxHwJXC9ru`
+
+**Note**: The addresses above are for the current testnet deployment. For mainnet or your own deployment, update these values in your `.env` file.
 
 ## 🐛 Troubleshooting
 
 ### Wallet Won't Connect
+
 - Ensure OneWallet extension is installed
 - Check you're on OneChain testnet
 - Refresh page and try again
 
 ### Transaction Failed
+
 - Verify sufficient balance for gas
 - Check contract addresses are correct
 - Ensure NFT is minted before playing
 
-### Game Won't Start
-- Clear browser cache
-- Check console for errors
-- Verify wallet is connected
-
 ## 🤝 Contributing
 
 Contributions welcome! Please:
+
 1. Fork the repository
 2. Create a feature branch
 3. Commit your changes
@@ -233,16 +273,17 @@ MIT License - see LICENSE file for details
 
 ## 🎮 Game Controls
 
-| Action | Controls |
-|--------|----------|
-| Aim | Mouse Movement or WASD/Arrow Keys |
-| Fire | Automatic |
-| Save Progress | Click "Save Progress" in HUD |
-| Menu | Click "Menu" button or close (X) |
+| Action        | Controls                          |
+| ------------- | --------------------------------- |
+| Aim           | Mouse Movement or WASD/Arrow Keys |
+| Fire          | Automatic                         |
+| Save Progress | Click "Save Progress" in HUD      |
+| Menu          | Click "Menu" button or close (X)  |
 
 ## 📊 Stats & Leaderboard
 
 Track your progress:
+
 - Total kills across all machines
 - Highest wave reached
 - Total tokens earned
@@ -252,4 +293,4 @@ Track your progress:
 
 **Built with ❤️ on OneChain**
 
-*Play to Earn • Stake to Grow • Defend to Survive*
+_Play to Earn • Stake to Grow • Defend to Survive_

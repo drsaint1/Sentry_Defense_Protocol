@@ -156,19 +156,20 @@ export default function GameOverlay() {
     }
 
     setProcessingMachine(machineId);
-    showToast("Preparing your machine...");
 
     try {
+      // Profile creation if needed
       if (!playerProfile) {
-        showToast("Creating player profile...");
         const profileTx = buildInitPlayerProfileTx();
+        showToast("Creating player profile...");
         await signAndExecuteTransaction({
           transaction: profileTx,
         });
       }
 
-      showToast("Minting NFT on blockchain...");
+      // Mint transaction - build first, then show toast for instant popup
       const mintTx = buildMintMachineTx(machineType);
+      showToast("Minting NFT on blockchain...");
       await signAndExecuteTransaction({
         transaction: mintTx,
       });
@@ -261,12 +262,14 @@ export default function GameOverlay() {
 
     setProcessingMachine(machineId);
     const isCurrentlyStaked = machine.isStaked;
-    showToast(isCurrentlyStaked ? "Unstaking machine..." : "Staking machine...");
 
     try {
+      // Build transaction first for instant wallet popup
       const tx = isCurrentlyStaked
         ? buildUnstakeMachineTx(machine.objectId, playerProfile.objectId)
         : buildStakeMachineTx(machine.objectId);
+
+      showToast(isCurrentlyStaked ? "Unstaking machine..." : "Staking machine...");
 
       await signAndExecuteTransaction({
         transaction: tx,
