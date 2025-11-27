@@ -484,9 +484,17 @@ export default function GameOverlay() {
           <p className="eyebrow">Sentry Defense Protocol</p>
           <h1>Deploy, Mint &amp; Earn</h1>
           {account?.address && (
-            <div className="wallet-badge">
-              <span className="wallet-icon">🔗</span>
-              <span className="wallet-text">{account.address.slice(0, 8)}...{account.address.slice(-6)}</span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '12px' }}>
+              <div className="wallet-badge">
+                <span className="wallet-icon">🔗</span>
+                <span className="wallet-text">{account.address.slice(0, 8)}...{account.address.slice(-6)}</span>
+              </div>
+              <WalletConnectButton
+                className="cta ghost"
+                style={{ padding: '8px 16px', fontSize: '13px' }}
+              >
+                🚪 Disconnect
+              </WalletConnectButton>
             </div>
           )}
           <p className="lead">
